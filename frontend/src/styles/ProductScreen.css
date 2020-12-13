@@ -1,0 +1,124 @@
+a {
+  color: var(--dark-color);
+}
+
+.productScreen__summary-qty .qty-padding {
+  padding: 0.2rem 0.5rem;
+  outline: none;
+}
+
+.productScreen__details .strong-text {
+  font-weight: 600;
+}
+
+.productScreen__summary > table {
+  border: 1px solid var(--grey-color);
+}
+
+/* td {
+  border-bottom: 1px solid var(--grey-color);
+} */
+
+.productScreen {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 5rem;
+  margin-top: 9rem;
+}
+
+.productScreen__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.productScreen__details-img {
+  width: 500px;
+  height: auto;
+  /* padding: 1rem; */
+  margin: 1rem;
+}
+
+.productScreen__details-description {
+  /* display: flex;
+  flex-direction: column; */
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 300px;
+}
+
+.productScreen__details-description-name {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.productScreen__details-description-review {
+  padding: 0.5rem;
+}
+
+.productScreen__details-description-price {
+  padding: 0.5rem;
+}
+
+.productScreen__details-description-desc {
+  padding: 0.5rem;
+}
+
+.productScreen__summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  /* padding: 1rem; */
+  width: 200px;
+  height: auto;
+}
+
+.productScreen__summary-price {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+
+.productScreen__summary-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+
+.productScreen__summary-qty {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+
+.productScreen__summary-addToCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* button */
+.addToCart__button {
+  display: inline-block;
+  color: var(--light-color);
+  padding: 0.8rem 1rem;
+  width: 200px;
+  background-color: var(--primary-color);
+  border-color: #a88734 #9c7e31 #846a29;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.addToCart__button:hover {
+  opacity: 0.8;
+}
