@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/slide1.jpeg',
     description:
@@ -11,10 +10,9 @@ const products = [
     countInStock: 10,
     rating: 4.5,
     numReviews: 12,
-    usage: 'New',
+    condition: 'New',
   },
   {
-    _id: '2',
     name: 'iPhone 11 Pro 256GB Memory',
     image: '/images/slide8.jpeg',
     description:
@@ -25,10 +23,9 @@ const products = [
     countInStock: 7,
     rating: 4.0,
     numReviews: 8,
-    usage: 'Fairly used',
+    condition: 'Fairly used',
   },
   {
-    _id: '3',
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/slide5.jpeg',
     description:
@@ -39,10 +36,9 @@ const products = [
     countInStock: 5,
     rating: 3,
     numReviews: 12,
-    usage: 'New',
+    condition: 'New',
   },
   {
-    _id: '4',
     name: 'Sony Playstation 4 Pro White Version',
     image: '/images/slide4.jpeg',
     description:
@@ -53,10 +49,9 @@ const products = [
     countInStock: 11,
     rating: 5,
     numReviews: 12,
-    usage: 'Fairly used',
+    condition: 'Fairly used',
   },
   {
-    _id: '5',
     name: 'Logitech G-Series Gaming Mouse',
     image: '/images/slide5.jpeg',
     description:
@@ -67,10 +62,9 @@ const products = [
     countInStock: 7,
     rating: 3.5,
     numReviews: 10,
-    usage: 'Fairly used',
+    condition: 'Fairly used',
   },
   {
-    _id: '6',
     name: 'Amazon Echo Dot 3rd Generation',
     image: '/images/slide7.jpeg',
     description:
@@ -81,7 +75,7 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-    usage: 'New',
+    condition: 'New',
   },
 ]
 

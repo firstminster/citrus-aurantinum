@@ -15,10 +15,6 @@ a {
   border: 1px solid var(--grey-color);
 }
 
-/* td {
-  border-bottom: 1px solid var(--grey-color);
-} */
-
 .productScreen {
   display: flex;
   flex-direction: column;

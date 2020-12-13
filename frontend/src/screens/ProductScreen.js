@@ -25,8 +25,10 @@ const ProductScreen = ({ match }) => {
 
   return (
     <main className='productScreen'>
-      <div className='productScreen__goback btn btn-light'>
-        <Link to='/'>GO BACK</Link>
+      <div className='productScreen__goback '>
+        <Link to='/' className='btn btn-light'>
+          GO BACK
+        </Link>
       </div>
       <div className='productScreen__details'>
         <div className='productScreen__details-img'>

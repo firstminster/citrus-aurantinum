@@ -16,7 +16,9 @@ const Product = ({ product }) => {
           <Link to={`/product/${product._id}`}>
             <p className='product__card-container-title-name'>{product.name}</p>
           </Link>
-          <p className='product__card-container-title-usage'>{product.usage}</p>
+          <p className='product__card-container-title-usage'>
+            {product.condition}
+          </p>
         </div>
         <div className='product__card-container-title2'>
           <Rating

@@ -51,15 +51,21 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: 0.0,
     },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    isAdmin: {
+    isPaid: {
       type: Boolean,
       required: true,
       default: false,
+    },
+    paidAt: {
+      type: Date,
+    },
+    isDelivered: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    deliveredAt: {
+      type: Date,
     },
   },
   {
@@ -67,6 +73,6 @@ const orderSchema = mongoose.Schema(
   }
 )
 
-const User = mongoose.model('User', userSchema)
+const Order = mongoose.model('Order', orderSchema)
 
-export default User
+export default Order

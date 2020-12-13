@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GiOrangeSlice } from 'react-icons/gi'
+import FilterHdrIcon from '@material-ui/icons/FilterHdr'
+import FingerprintIcon from '@material-ui/icons/Fingerprint'
 import { IconButton } from '@material-ui/core'
 import Badge from '@material-ui/core/Badge'
 import { withStyles } from '@material-ui/core/styles'
@@ -35,7 +37,7 @@ const Navbar = () => {
     <header className='navbar'>
       <Link to='/' className='navbar__logo'>
         CITRUS
-        <GiOrangeSlice className='navbar__logo-icon' />
+        <FingerprintIcon className='navbar__logo-icon' />
       </Link>
 
       <div className='navbar__menu-icon' onClick={handleClick}>
