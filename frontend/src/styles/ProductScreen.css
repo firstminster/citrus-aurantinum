@@ -15,11 +15,18 @@ a {
   border: 1px solid var(--grey-color);
 }
 
+.condition {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: red;
+  font-weight: 800;
+}
+
 .productScreen {
   display: flex;
   flex-direction: column;
-  margin: 3rem 5rem;
-  margin-top: 9rem;
+  margin: 3rem 1rem;
+  /* margin-top: 9rem; */
 }
 
 .productScreen__details {

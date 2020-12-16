@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { GiOrangeSlice } from 'react-icons/gi'
-import FilterHdrIcon from '@material-ui/icons/FilterHdr'
 import FingerprintIcon from '@material-ui/icons/Fingerprint'
+import { useSelector } from 'react-redux'
 import { IconButton } from '@material-ui/core'
 import Badge from '@material-ui/core/Badge'
 import { withStyles } from '@material-ui/core/styles'
@@ -32,6 +31,13 @@ const Navbar = () => {
 
   const handleClick = () => setClick(!click) // Set click to true
   const closeMobileMenu = () => setClick(false) // Set click to false
+
+  // Brings in Data from the global state (Redux Store)
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart
+
+  // Calculate the Total/Available Products/items in the cart
+  const countProduct = cartItems?.length
 
   return (
     <header className='navbar'>
@@ -77,14 +83,12 @@ const Navbar = () => {
             className='navbar__item-cart'
             onClick={closeMobileMenu}
           >
-            {/* <ShoppingCart className='navbar__item-cart-icon' /> */}
-
             <IconButton
               aria-label='cart'
               color='secondary'
               className={classes.root}
             >
-              <StyledBadge badgeContent={2} color='secondary'>
+              <StyledBadge badgeContent={countProduct} color='secondary'>
                 <ShoppingCartIcon className='navbar__item-cart-icon' />
               </StyledBadge>
             </IconButton>

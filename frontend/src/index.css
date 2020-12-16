@@ -43,8 +43,9 @@ img {
 /* Utilities */
 .container {
   max-width: 1500px;
-  margin: auto;
-  overflow: hidden;
+  /* margin: auto; */
+  /* overflow: hidden; */
+  /* height: 100vh; */
 }
 
 /* Padding */
@@ -134,7 +135,7 @@ img {
 }
 
 /* Layout */
-/* .grid-container {
+.grid-container {
   display: grid;
   grid-template-areas:
     'header'
@@ -142,17 +143,19 @@ img {
     'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
-  height: 100%;
+  /* height: 20rem; */
+  /* height: 100%; */
+  height: 100vh;
 }
 
 header {
   grid-area: header;
-  background-color: #203040;
+  /* background-color: #203040; */
 }
 
 main {
   grid-area: main;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
 }
 
 footer {
@@ -160,4 +163,5 @@ footer {
   background-color: #203040;
   color: #fff;
   height: 200px;
-} */
+  /* padding-bottom: 1rem; */
+}

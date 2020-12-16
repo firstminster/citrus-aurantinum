@@ -4,6 +4,7 @@ import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 // Initialize DotEnv
 dotenv.config()
@@ -13,6 +14,9 @@ connectDB()
 
 // Initialize express
 const app = express()
+
+// Init BodyParser Middleware
+app.use(express.json())
 
 // First Middleware before response is sent
 // app.use((req, res, next) => {
@@ -25,8 +29,9 @@ app.get('/', (req, res) => {
   res.send('API is Running...')
 })
 
-// Routes Middleware
+// Define Routes Middleware
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 // Error Middleware - (Invalid routes/url)
 app.use(notFound)

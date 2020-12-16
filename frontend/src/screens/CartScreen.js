@@ -1,13 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import '../styles/CartScreen.css'
-import products from '../productsData.js'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const CartScreen = ({ match }) => {
+const CartScreen = ({ match, location }) => {
   // const product = products.find(p => p._id === match.params.id)
 
-  const removeFromCartHandler = () => {
-    console.log('Remove product')
+  // Gets the product ID from the URL
+  const productId = match.params.id
+
+  // Checks for the quantity selected in the URL
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+
+  // Calls/Invokes an action
+  const dispatch = useDispatch()
+
+  // Brings in Data from the global state (Redux Store)
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty))
+    }
+  }, [dispatch, productId, qty])
+
+  // Remove Item from cart function
+  const removeFromCartHandler = id => {
+    dispatch(removeFromCart(id))
   }
+
   return (
     <main className='cartScreen'>
       <div className='cartScreen__content'>
@@ -15,22 +38,31 @@ const CartScreen = ({ match }) => {
           <p>SHOPPING CART</p>
         </div>
         <div className='cartScreen__content-prods'>
-          {products.map(product => (
-            <div key={product._id} className='cartScreen__content-prods-item'>
+          {cartItems?.map(item => (
+            <div key={item.product} className='cartScreen__content-prods-item'>
               <img
-                src={product.image}
-                alt={product.name}
+                src={item.image}
+                alt={item.name}
                 className='cartScreen__content-prods-item-img'
               />
-              <p className='cartScreen__content-prods-item-title'>
-                {product.name}
-              </p>
+              <Link to={`/product/${item.product}`}>
+                <p className='cartScreen__content-prods-item-title'>
+                  {item.name}
+                </p>
+              </Link>
               <p className='cartScreen__content-prods-item-price'>
-                ${product.price}
+                ${item.price}
               </p>
               <div className='cartScreen__content-prods-item-qty'>
-                <select id='qty' value={0} onChange={0} className='qty-padding'>
-                  {[...Array(product.countInStock).keys()].map(x => (
+                <select
+                  id='qty'
+                  value={item.qty}
+                  onChange={e =>
+                    dispatch(addToCart(item.product, Number(e.target.value)))
+                  }
+                  className='qty-padding'
+                >
+                  {[...Array(item.countInStock).keys()].map(x => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>
@@ -40,7 +72,7 @@ const CartScreen = ({ match }) => {
               <div className='cartScreen__content-prods-item-btn'>
                 <i
                   className='del fas fa-trash'
-                  onClick={() => removeFromCartHandler()}
+                  onClick={() => removeFromCartHandler(item.product)}
                 />
               </div>
             </div>
@@ -52,12 +84,20 @@ const CartScreen = ({ match }) => {
           <tbody>
             <tr>
               <td>
-                <p className='cartScreen__checkout-title'>SUBTOTAL (2) ITEMS</p>
+                <p className='cartScreen__checkout-title'>
+                  SUBTOTAL (
+                  {cartItems?.reduce((acc, item) => acc + item.qty, 0)}) ITEMS
+                </p>
               </td>
             </tr>
             <tr>
               <td>
-                <p className='cartScreen__checkout-price'>$total price</p>
+                <p className='cartScreen__checkout-price'>
+                  $
+                  {cartItems
+                    ?.reduce((acc, item) => acc + item.qty * item.price, 0)
+                    .toFixed(2)}
+                </p>
               </td>
             </tr>
             <tr>

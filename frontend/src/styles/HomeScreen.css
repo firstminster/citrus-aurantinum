@@ -8,7 +8,7 @@
   width: 100%;
   z-index: -1;
   margin: auto;
-  margin-top: 80px !important;
+  /* margin-top: 80px !important; */
   margin-bottom: -150px !important;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   position: relative;

@@ -16,7 +16,7 @@ const Product = ({ product }) => {
           <Link to={`/product/${product._id}`}>
             <p className='product__card-container-title-name'>{product.name}</p>
           </Link>
-          <p className='product__card-container-title-usage'>
+          <p className='product__card-container-title-condition'>
             {product.condition}
           </p>
         </div>
@@ -26,9 +26,7 @@ const Product = ({ product }) => {
             value={product.rating}
             text={` ${product.numReviews} reviews`}
           />
-          {/* <p className='product__card-container-title2'>
-            {'⭐⭐⭐⭐⭐ '} <span> {product.numReviews} reviews</span>
-          </p> */}
+
           <p className='product__card-container-title2-price'>
             ${product.price}
           </p>

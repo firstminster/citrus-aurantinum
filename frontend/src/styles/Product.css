@@ -39,7 +39,7 @@
   color: var(--dark-color);
 }
 
-.product__card-container-title-usage {
+.product__card-container-title-condition {
   font-style: italic;
   font-size: 0.8rem;
   color: red;

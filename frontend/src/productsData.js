@@ -69,6 +69,7 @@ const products = [
     numReviews: 10,
     condition: 'Fairly used',
   },
+
   {
     _id: '6',
     name: 'Amazon Echo Dot 3rd Generation',
