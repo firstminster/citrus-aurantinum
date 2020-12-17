@@ -15,7 +15,6 @@
   max-width: 250px;
   height: auto;
   cursor: pointer;
-  /* padding: 0.1rem 0.1rem; */
 }
 
 .product__card--image:hover {
@@ -43,7 +42,7 @@
   font-style: italic;
   font-size: 0.8rem;
   color: red;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .product__card-container-title2 {
@@ -55,5 +54,5 @@
 .product__card-container-title2-price {
   font-size: 1.5rem;
   margin-top: 0.7rem;
-  font-weight: 800;
+  font-weight: 400;
 }

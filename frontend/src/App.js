@@ -12,14 +12,15 @@ const App = () => {
     <Router>
       <div className='grid-container'>
         <Navbar />
-        <main className='container '>
-          <Switch>
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/product/:id' component={ProductScreen} />
-            <Route path='/' component={HomeScreen} exact />
-          </Switch>
-        </main>
+        {/* <main className='container'> */}
+        <Switch>
+          <Route path='/login' component={LoginScreen} />
+          <Route path='/register' component={LoginScreen} />
+          <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/' component={HomeScreen} exact />
+        </Switch>
+        {/* </main> */}
         <Footer />
       </div>
     </Router>

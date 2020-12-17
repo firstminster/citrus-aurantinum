@@ -1,6 +1,7 @@
 /* Global Styles */
 :root {
-  --primary-color: #ec8c37;
+  /* --primary-color: #ec8c37; */
+  --primary-color: #ff4b2b;
   --dark-color: #17202a;
   --light-color: #f4f4f4;
   --success-color: #82e0aa;
@@ -14,17 +15,13 @@
   margin: 0;
   padding: 0;
   font-family: 'PT Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: rgba(234, 237, 237);
-  margin: 0;
-  height: 100vh;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -41,12 +38,12 @@ img {
 }
 
 /* Utilities */
-.container {
-  max-width: 1500px;
-  /* margin: auto; */
-  /* overflow: hidden; */
-  /* height: 100vh; */
-}
+/* .container {
+  max-width: 1600px;
+  margin: auto;
+  overflow: hidden;
+  height: 100vh;
+} */
 
 /* Padding */
 .p {
@@ -109,11 +106,11 @@ img {
   outline: none;
   border: none;
   border-radius: 2px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
-  width: 100px;
+  /* width: 100px; */
 }
 
 .btn-primary {
@@ -143,19 +140,18 @@ img {
     'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
-  /* height: 20rem; */
-  /* height: 100%; */
+
   height: 100vh;
 }
 
 header {
   grid-area: header;
-  /* background-color: #203040; */
 }
 
 main {
   grid-area: main;
-  /* padding-bottom: 1rem; */
+  max-width: 1500px;
+  margin: auto;
 }
 
 footer {
@@ -163,5 +159,4 @@ footer {
   background-color: #203040;
   color: #fff;
   height: 200px;
-  /* padding-bottom: 1rem; */
 }

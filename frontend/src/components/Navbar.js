@@ -74,7 +74,7 @@ const Navbar = () => {
             className='navbar__links-mobile'
             onClick={closeMobileMenu}
           >
-            Sign In
+            Log In
           </Link>
         </li>
         <li className='navbar__item'>
