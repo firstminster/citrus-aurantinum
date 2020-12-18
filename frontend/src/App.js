@@ -14,8 +14,8 @@ const App = () => {
         <Navbar />
         {/* <main className='container'> */}
         <Switch>
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={LoginScreen} />
+          <Route path='/login' component={LoginScreen} exact />
+          <Route path='/register' component={LoginScreen} exact />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/' component={HomeScreen} exact />

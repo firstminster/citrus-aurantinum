@@ -2,12 +2,22 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import '../styles/LoginScreen.css'
-import { login } from '../actions/userActions'
+import { login, register } from '../actions/userActions'
 
 const LoginScreen = ({ location, history }) => {
   const containerRef = useRef(null)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [loginEmail, setLoginEmail] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+
+  // const [registerName, setRegisterName] = useState('')
+  // const [registerEmail, setRegisterEmail] = useState('')
+  // const [registerPassword, setRegisterPassword] = useState('')
+  // const [registerConfirmPassword, setRegisterConfirmPassword] = useState('')
+
+  const registerName = useRef('')
+  const registerEmail = useRef('')
+  const registerPassword = useRef('')
+  const registerConfirmPassword = useRef('')
 
   // Adds the active panel to the class
   const signupAnimate = () => {
@@ -24,6 +34,14 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector(state => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
+  // Brings in Data from the global state (Redux Store)
+  const userRegister = useSelector(state => state.userRegister)
+  const {
+    loading: loadingRegister,
+    error: errorRegister,
+    userInfo: userInfoRegister,
+  } = userRegister
+
   // Checks for Redirect
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -35,17 +53,43 @@ const LoginScreen = ({ location, history }) => {
   // }, [history, userInfo, redirect])
 
   // User login handler
-  const submitHandler = e => {
+  const loginSubmitHandler = e => {
     e.preventDefault()
 
-    dispatch(login(email, password))
+    dispatch(login(loginEmail, loginPassword))
+    setLoginEmail('')
+    setLoginPassword('')
+  }
+
+  // User register Handler
+  const registerSubmitHandler = e => {
+    if (
+      registerPassword.current.value !== registerConfirmPassword.current.value
+    ) {
+      alert('Password do not match')
+    } else {
+      dispatch(
+        register(
+          registerName.current.value,
+          registerEmail.current.value,
+          registerPassword.current.value
+        )
+      )
+    }
+    // if (!loadingRegister) {
+    //   registerName('')
+    //   registerEmail('')
+    //   registerPassword('')
+    //   registerConfirmPassword('')
+    // }
+    e.preventDefault()
   }
 
   return (
     <main className='loginScreen'>
       <div className='container' id='container' ref={containerRef}>
         <div className='form-container sign-up-container'>
-          <form action='#'>
+          <form action='#' onSubmit={registerSubmitHandler}>
             <h1>Create Account</h1>
             <div className='social-container'>
               <Link to='#' className='social'>
@@ -59,14 +103,23 @@ const LoginScreen = ({ location, history }) => {
               </Link>
             </div>
             <span>or use your email for registration</span>
-            <input type='text' placeholder='Name' />
-            <input type='email' placeholder='Email' />
-            <input type='password' placeholder='Password' />
-            <button>Sign Up</button>
+            <input type='text' placeholder='Name' ref={registerName} />
+            <input type='email' placeholder='Email' ref={registerEmail} />
+            <input
+              type='password'
+              placeholder='Password'
+              ref={registerPassword}
+            />
+            <input
+              type='password'
+              placeholder='Confirm password'
+              ref={registerConfirmPassword}
+            />
+            <button type='submit'>Sign Up</button>
           </form>
         </div>
         <div className='form-container sign-in-container'>
-          <form action='#' onSubmit={submitHandler}>
+          <form action='#' onSubmit={loginSubmitHandler}>
             <h1>Sign in</h1>
             <div className='social-container'>
               <Link to='#' className='social'>
@@ -83,14 +136,14 @@ const LoginScreen = ({ location, history }) => {
             <input
               type='email'
               placeholder='Email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={loginEmail}
+              onChange={e => setLoginEmail(e.target.value)}
             />
             <input
               type='password'
               placeholder='Password'
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              value={loginPassword}
+              onChange={e => setLoginPassword(e.target.value)}
             />
             <Link to='#'>Forgot your password?</Link>
             <button type='submit'>Sign In</button>
@@ -103,17 +156,23 @@ const LoginScreen = ({ location, history }) => {
               <p>
                 To keep connected with us please login with your personal info
               </p>
-              <button className='ghost' id='signIn' onClick={signinAnimate}>
-                Sign In
-              </button>
+              <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+                <button className='ghost' id='signIn' onClick={signinAnimate}>
+                  Sign In
+                </button>
+              </Link>
             </div>
 
             <div className='overlay-panel overlay-right'>
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <button className='ghost' id='signUp' onClick={signupAnimate}>
-                Sign Up
-              </button>
+              <Link
+                to={redirect ? `/register?redirect=${redirect}` : '/register'}
+              >
+                <button className='ghost' id='signUp' onClick={signupAnimate}>
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         </div>

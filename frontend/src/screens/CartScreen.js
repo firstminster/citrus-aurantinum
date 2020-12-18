@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../styles/CartScreen.css'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const CartScreen = ({ match, location }) => {
+const CartScreen = ({ match, location, history }) => {
   // const product = products.find(p => p._id === match.params.id)
 
   // Gets the product ID from the URL
@@ -29,6 +29,7 @@ const CartScreen = ({ match, location }) => {
   // Remove Item from cart function
   const removeFromCartHandler = id => {
     dispatch(removeFromCart(id))
+    history.push('/cart')
   }
 
   return (
