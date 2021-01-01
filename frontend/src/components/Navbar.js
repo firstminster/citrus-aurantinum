@@ -93,7 +93,7 @@ const Navbar = () => {
           <li className='navbar__item' onClick={adminHandler}>
             <Link to='#'>
               <span className='navbar__item-username'>
-                AdminPanel
+                Setting
                 <i className='fas fa-caret-down' />
               </span>
             </Link>

@@ -49,12 +49,12 @@ const LoginScreen = ({ location, history }) => {
   // Checks for Redirect
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  // Cause a side-effect when the componet loads
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push(redirect)
-  //   }
-  // }, [history, userInfo, redirect])
+  // Cause a side-effect when the component loads
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect)
+    }
+  }, [history, userInfo, redirect])
 
   // User login handler
   const loginSubmitHandler = e => {

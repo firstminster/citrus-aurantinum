@@ -32,6 +32,11 @@ const CartScreen = ({ match, location, history }) => {
     history.push('/cart')
   }
 
+  // Checkout function
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping')
+  }
+
   return (
     <main className='cartScreen'>
       <div className='cartScreen__content'>
@@ -103,7 +108,12 @@ const CartScreen = ({ match, location, history }) => {
             </tr>
             <tr>
               <td>
-                <button className='cartScreen__checkout-btn'>
+                <button
+                  type='button'
+                  className='cartScreen__checkout-btn'
+                  disabled={cartItems.length === 0}
+                  onClick={checkoutHandler}
+                >
                   PROCEED TO CHECKOUT
                 </button>
               </td>
