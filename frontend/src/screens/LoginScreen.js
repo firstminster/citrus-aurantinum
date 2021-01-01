@@ -6,13 +6,17 @@ import { login, register } from '../actions/userActions'
 
 const LoginScreen = ({ location, history }) => {
   const containerRef = useRef(null)
-  const [loginEmail, setLoginEmail] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
+
+  // const [loginEmail, setLoginEmail] = useState('')
+  // const [loginPassword, setLoginPassword] = useState('')
 
   // const [registerName, setRegisterName] = useState('')
   // const [registerEmail, setRegisterEmail] = useState('')
   // const [registerPassword, setRegisterPassword] = useState('')
   // const [registerConfirmPassword, setRegisterConfirmPassword] = useState('')
+
+  const loginEmail = useRef('')
+  const loginPassword = useRef('')
 
   const registerName = useRef('')
   const registerEmail = useRef('')
@@ -56,9 +60,9 @@ const LoginScreen = ({ location, history }) => {
   const loginSubmitHandler = e => {
     e.preventDefault()
 
-    dispatch(login(loginEmail, loginPassword))
-    setLoginEmail('')
-    setLoginPassword('')
+    dispatch(login(loginEmail.current.value, loginPassword.current.value))
+    // setLoginEmail('')
+    // setLoginPassword('')
   }
 
   // User register Handler
@@ -76,12 +80,7 @@ const LoginScreen = ({ location, history }) => {
         )
       )
     }
-    // if (!loadingRegister) {
-    //   registerName('')
-    //   registerEmail('')
-    //   registerPassword('')
-    //   registerConfirmPassword('')
-    // }
+
     e.preventDefault()
   }
 
@@ -136,14 +135,16 @@ const LoginScreen = ({ location, history }) => {
             <input
               type='email'
               placeholder='Email'
-              value={loginEmail}
-              onChange={e => setLoginEmail(e.target.value)}
+              ref={loginEmail}
+              // value={loginEmail}
+              // onChange={e => setLoginEmail(e.target.value)}
             />
             <input
               type='password'
               placeholder='Password'
-              value={loginPassword}
-              onChange={e => setLoginPassword(e.target.value)}
+              ref={loginPassword}
+              // value={loginPassword}
+              // onChange={e => setLoginPassword(e.target.value)}
             />
             <Link to='#'>Forgot your password?</Link>
             <button type='submit'>Sign In</button>

@@ -21,27 +21,27 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         }
       }
     case CART_REMOVE_ITEM:
-      return {
-        ...state,
-        cartItems: state.cartItems.filter(x => x.product !== action.payload),
+      // return {
+      //   ...state,
+      //   cartItems: state.cartItems.filter(x => x.product !== action.payload),
+      // }
+
+      const index = state.cartItems.findIndex(
+        item => item.product === action.payload
+      )
+
+      let newCart = [...state.cartItems]
+
+      if (index >= 0) {
+        newCart.splice(index, 1)
+      } else {
+        console.warn(`Product {id: ${action.id}} not available in Cart!`)
       }
 
-    // const index = state.cartItems.findIndex(
-    //   item => item.product === action.payload
-    // )
-
-    // let newCart = [...state.cartItems]
-
-    // if (index >= 0) {
-    //   newCart.splice(index, 1)
-    // } else {
-    //   console.warn(`Product {id: ${action.id}} not available in Cart!`)
-    // }
-
-    // return {
-    //   ...state,
-    //   cartItems: newCart,
-    // }
+      return {
+        ...state,
+        cartItems: newCart,
+      }
     default:
       return state
   }
