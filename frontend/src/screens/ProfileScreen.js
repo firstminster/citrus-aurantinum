@@ -57,7 +57,7 @@ const ProfileScreen = ({ history }) => {
       <div className='profileScreen__user'>
         <p className='title'>User Profile</p>
         <div className='profileScreen__formContainer'>
-          <form action='#' onSubmit={submitHandler}>
+          <form onSubmit={submitHandler}>
             <label htmlFor='name'>Name</label>
             <input
               type='text'

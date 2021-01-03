@@ -4,10 +4,14 @@
   --primary-color: #ff4b2b;
   --dark-color: #17202a;
   --light-color: #f4f4f4;
-  --success-color: #82e0aa;
+  --success-color: #b4f0c9;
+  --success-txt-color: #27633c;
   --grey-color: #bdbdbd;
   --lightgrey-color: #e0e0e0;
-  --danger-color: #d32f2f;
+  --danger-color: #f4cac8;
+  --danger-txt-color: #712b29;
+  --info-color: #b0def0;
+  --info-txt-color: #14516c;
 }
 
 * {
@@ -24,6 +28,7 @@ body {
   background-color: rgba(234, 237, 237);
 }
 
+/* Utilities */
 a {
   text-decoration: none;
 }
@@ -37,7 +42,10 @@ img {
   object-fit: contain;
 }
 
-/* Utilities */
+.disabled {
+  color: var(--grey-color);
+}
+
 /* .container {
   max-width: 1600px;
   margin: auto;

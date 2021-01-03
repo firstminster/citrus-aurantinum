@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Rating from '../components/Rating'
 import '../styles/ProductScreen.css'
 import { listProductDetails } from '../actions/productActions'
+import Spinner from '../components/Spinner'
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1)
@@ -34,7 +35,7 @@ const ProductScreen = ({ match, history }) => {
       </div>
       <>
         {loading ? (
-          <h2>Loading...</h2>
+          <Spinner />
         ) : error ? (
           { error }
         ) : (

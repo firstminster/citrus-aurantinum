@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../styles/HomeScreen.css'
 import Product from '../components/Product'
 import { listProducts } from '../actions/productActions'
+import Spinner from '../components/Spinner'
 
 const HomeScreen = () => {
   // useDispatch - calls/invoke an action
@@ -19,7 +20,7 @@ const HomeScreen = () => {
   return (
     <main className='home'>
       {loading ? (
-        <h2>Loading...</h2>
+        <Spinner />
       ) : error ? (
         <h3>{error}</h3>
       ) : (

@@ -7,17 +7,11 @@ import { login, register } from '../actions/userActions'
 const LoginScreen = ({ location, history }) => {
   const containerRef = useRef(null)
 
-  // const [loginEmail, setLoginEmail] = useState('')
-  // const [loginPassword, setLoginPassword] = useState('')
-
-  // const [registerName, setRegisterName] = useState('')
-  // const [registerEmail, setRegisterEmail] = useState('')
-  // const [registerPassword, setRegisterPassword] = useState('')
-  // const [registerConfirmPassword, setRegisterConfirmPassword] = useState('')
-
+  // Login Initial state
   const loginEmail = useRef('')
   const loginPassword = useRef('')
 
+  // Register Initial state
   const registerName = useRef('')
   const registerEmail = useRef('')
   const registerPassword = useRef('')
@@ -88,7 +82,7 @@ const LoginScreen = ({ location, history }) => {
     <main className='loginScreen'>
       <div className='container' id='container' ref={containerRef}>
         <div className='form-container sign-up-container'>
-          <form action='#' onSubmit={registerSubmitHandler}>
+          <form onSubmit={registerSubmitHandler}>
             <h1>Create Account</h1>
             <div className='social-container'>
               <Link to='#' className='social'>

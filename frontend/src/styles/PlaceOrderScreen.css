@@ -1,0 +1,121 @@
+.placeOrderScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 3rem;
+}
+
+.placeOrderScreen__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+
+.placeOrderScreen .title {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.orderDetails-content {
+  margin: 1rem;
+}
+
+/* PlaceOrder Details */
+.placeOrderScreen__orderDetails {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5rem;
+}
+
+.orderDetails-shippingAddress {
+  border-bottom: 1px solid var(--grey-color);
+  padding-right: 2rem;
+}
+
+.orderDetails-paymentMethod {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.orderDetails-orderItems {
+  margin-bottom: 3rem;
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  margin-left: 1rem;
+}
+
+.orderItem-item {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.5rem 0.5rem 1rem;
+  margin: 0.5rem;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.orderItem-item-image {
+  width: 2rem;
+  border-radius: 5px;
+}
+
+.orderItem-item-name {
+  width: 350px;
+  margin: 0 1rem 0 1rem;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.orderItem-item-price {
+  width: auto;
+  font-size: 13px;
+}
+
+/* PlaceOrder Summary */
+.placeOrderScreen__orderSummary table {
+  width: 20rem;
+  border: 1px solid var(--grey-color);
+  border-collapse: collapse;
+}
+
+.placeOrderScreen__orderSummary table th {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.placeOrderScreen__orderSummary table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.placeOrderScreen__orderSummary-btn {
+  width: 20rem;
+  height: 3rem;
+  padding: 0.5rem;
+  /* margin-top: 1rem; */
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.placeOrderScreen__orderSummary-btn:active {
+  transform: scale(0.95);
+}

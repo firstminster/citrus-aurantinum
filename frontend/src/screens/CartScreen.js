@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import '../styles/CartScreen.css'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import Message from '../components/Message'
 
 const CartScreen = ({ match, location, history }) => {
   // const product = products.find(p => p._id === match.params.id)
@@ -40,51 +41,60 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <main className='cartScreen'>
       <div className='cartScreen__content'>
-        <div className='cartScreen__content-title'>
-          <p>SHOPPING CART</p>
-        </div>
-        <div className='cartScreen__content-prods'>
-          {cartItems?.map(item => (
-            <div key={item.product} className='cartScreen__content-prods-item'>
-              <img
-                src={item.image}
-                alt={item.name}
-                className='cartScreen__content-prods-item-img'
-              />
-              <Link to={`/product/${item.product}`}>
-                <p className='cartScreen__content-prods-item-title'>
-                  {item.name}
-                </p>
-              </Link>
-              <p className='cartScreen__content-prods-item-price'>
-                ${item.price}
-              </p>
-              <div className='cartScreen__content-prods-item-qty'>
-                <select
-                  id='qty'
-                  value={item.qty}
-                  onChange={e =>
-                    dispatch(addToCart(item.product, Number(e.target.value)))
-                  }
-                  className='qty-padding'
-                >
-                  {[...Array(item.countInStock).keys()].map(x => (
-                    <option key={x + 1} value={x + 1}>
-                      {x + 1}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className='cartScreen__content-prods-item-btn'>
-                <i
-                  className='del fas fa-trash'
-                  onClick={() => removeFromCartHandler(item.product)}
+        <p className='cartScreen__content-title'>SHOPPING CART</p>
+        {cartItems.length === 0 ? (
+          <Message msg={`Your cart is empty`} messageType={'info'}>
+            <Link to='/'>Go Back</Link>
+          </Message>
+        ) : (
+          <div className='cartScreen__content-prods'>
+            {cartItems?.map(item => (
+              <div
+                key={item.product}
+                className='cartScreen__content-prods-item'
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className='cartScreen__content-prods-item-img'
                 />
+                <Link to={`/product/${item.product}`}>
+                  <p className='cartScreen__content-prods-item-title'>
+                    {item.name}
+                  </p>
+                </Link>
+                <p className='cartScreen__content-prods-item-price'>
+                  ${item.price}
+                </p>
+                <div className='cartScreen__content-prods-item-qty'>
+                  <select
+                    id='qty'
+                    value={item.qty}
+                    onChange={e =>
+                      dispatch(addToCart(item.product, Number(e.target.value)))
+                    }
+                    className='qty-padding'
+                  >
+                    {[...Array(item.countInStock).keys()].map(x => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className='cartScreen__content-prods-item-btn'>
+                  <i
+                    className='del fas fa-trash'
+                    onClick={() => removeFromCartHandler(item.product)}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* Cart Checkout */}
       <div className='cartScreen__checkout'>
         <table>
           <tbody>

@@ -1,0 +1,22 @@
+.message {
+  width: 35rem;
+  text-align: left;
+  padding: 0.7rem;
+  margin: 1rem;
+  font-weight: 500;
+}
+
+.message-danger {
+  background: var(--danger-color);
+  color: var(--danger-txt-color);
+}
+
+.message-success {
+  background: var(--success-color);
+  color: var(--success-txt-color);
+}
+
+.message-info {
+  background: var(--info-color);
+  color: var(--info-txt-color);
+}

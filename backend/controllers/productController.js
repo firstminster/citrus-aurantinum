@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler'
-
 import Product from '../models/productModel.js'
 
 // @desc    Fetch all products
@@ -8,7 +7,7 @@ import Product from '../models/productModel.js'
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({})
   // res.status(500)
-  // throw new Error('Internal Server Error') //Create Custom Error
+  // throw new Error('Internal Server Error') //Creates Custom Error
   res.json(products)
 })
 

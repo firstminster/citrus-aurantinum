@@ -1,0 +1,20 @@
+.checkoutSteps__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.checkoutSteps__content-stepItem {
+  margin: 0 2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* 
+.checkoutSteps__content .disabled {
+  color: var(--grey-color);
+} */

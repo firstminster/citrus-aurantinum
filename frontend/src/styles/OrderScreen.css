@@ -1,0 +1,86 @@
+.orderScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 3rem;
+}
+
+.orderScreen .orderscreen__title {
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.orderScreen .title {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.orderScreen__Details-content {
+  margin: 1rem;
+}
+
+/* Order Details */
+.orderScreen__Details {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5rem;
+}
+
+.orderScreen__shipDetails {
+  border-bottom: 1px solid var(--grey-color);
+  padding-right: 2rem;
+}
+
+.orderScreen__payMethod {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.orderScreen__orderItems {
+  margin-bottom: 3rem;
+}
+
+/* Order Summary */
+.orderScreen__orderSummary table {
+  width: 20rem;
+  border: 1px solid var(--grey-color);
+  border-collapse: collapse;
+}
+
+.orderScreen__orderSummary table th {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.orderScreen__orderSummary table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.orderScreen__orderSummary-btn {
+  width: 20rem;
+  height: 3rem;
+  padding: 0.5rem;
+  /* margin-top: 1rem; */
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.orderScreen__orderSummary-btn:active {
+  transform: scale(0.95);
+}
