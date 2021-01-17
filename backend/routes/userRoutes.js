@@ -5,8 +5,9 @@ import {
   registerUser,
   getUserProfile,
   updateUserProfile,
+  getUsers,
 } from '../controllers/userController.js'
-import { protect } from '../middleware/authMiddleware.js'
+import { protect, admin } from '../middleware/authMiddleware.js'
 import { body, validationResult } from 'express-validator'
 
 // Define Routes Handler
@@ -24,6 +25,7 @@ router
     ],
     registerUser
   )
+  .get(protect, admin, getUsers)
 
 router.post(
   '/login',

@@ -19,7 +19,7 @@ const App = () => {
         <Navbar />
         {/* <main className='container'> */}
         <Switch>
-          <Route path='/order/:id' component={OrderScreen} />
+          <Route path='/orders/:id' component={OrderScreen} />
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />

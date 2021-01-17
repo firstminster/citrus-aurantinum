@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import '../styles/ProfileScreen.css'
+import Spinner from '../components/Spinner'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+import Message from '../components/Message'
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
@@ -26,6 +29,10 @@ const ProfileScreen = ({ history }) => {
   const userUpdateProfile = useSelector(state => state.userUpdateProfile)
   const { success } = userUpdateProfile
 
+  // Brings in Date from global state (Redux Store)
+  const orderListMy = useSelector(state => state.orderListMy)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+
   // Cause a side-effect when the componet loads
   useEffect(() => {
     if (!userInfo) {
@@ -34,6 +41,7 @@ const ProfileScreen = ({ history }) => {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
+        dispatch(listMyOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
@@ -56,6 +64,7 @@ const ProfileScreen = ({ history }) => {
     <main className='profileScreen'>
       <div className='profileScreen__user'>
         <p className='title'>User Profile</p>
+        {loading && <Spinner />}
         <div className='profileScreen__formContainer'>
           <form onSubmit={submitHandler}>
             <label htmlFor='name'>Name</label>
@@ -97,50 +106,62 @@ const ProfileScreen = ({ history }) => {
 
       <div className='profileScreen__orders'>
         <p className='title'>My Orders</p>
-        <div className='profileScreen__orders-table'>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5fc1f6fdccbbc476e46f85eb</td>
-                <td>2020-11-28</td>
-                <td>1069.49</td>
-                <td>2020-11-28</td>
-                <td>2020-11-28</td>
-                <td>
-                  <Link to='#'>
-                    <button className='profileScreen__orders-btn'>
-                      Detials
-                    </button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>5fc1f6fdccbbc476e46f85eb</td>
-                <td>2020-11-28</td>
-                <td>1069.49</td>
-                <td>2020-11-28</td>
-                <td>2020-11-28</td>
-                <td>
-                  <Link to='#'>
-                    <button className='profileScreen__orders-btn'>
-                      Detials
-                    </button>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        {loadingOrders ? (
+          <Spinner />
+        ) : errorOrders ? (
+          <Message>{errorOrders}</Message>
+        ) : (
+          <div className='profileScreen__orders-table'>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>TOTAL</th>
+                  <th>PAID</th>
+                  <th>DELIVERED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map(order => (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
+                    <td>{order.createdAt.substring(0, 10)}</td>
+                    <td>{order.totalPrice}</td>
+                    <td>
+                      {order.isPaid ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        <i
+                          className='fas fa-times'
+                          style={{ color: 'red' }}
+                        ></i>
+                      )}
+                    </td>
+                    <td>
+                      {order.isDelivered ? (
+                        order.deliveredAt.subtring(0, 10)
+                      ) : (
+                        <i
+                          className='fas fa-times'
+                          style={{ color: 'red' }}
+                        ></i>
+                      )}
+                    </td>
+                    <td>
+                      <Link to={`/orders/${order._id}`}>
+                        <button className='profileScreen__orders-btn'>
+                          Detials
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </main>
   )

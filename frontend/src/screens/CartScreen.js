@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../styles/CartScreen.css'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import Message from '../components/Message'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const CartScreen = ({ match, location, history }) => {
   // const product = products.find(p => p._id === match.params.id)
@@ -21,9 +22,11 @@ const CartScreen = ({ match, location, history }) => {
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart
 
+  // Cause a side-effect when the component loads
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
+      dispatch({ type: ORDER_CREATE_RESET })
     }
   }, [dispatch, productId, qty])
 

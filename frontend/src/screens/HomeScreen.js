@@ -13,6 +13,7 @@ const HomeScreen = () => {
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList
 
+  // Cause a side-effect when the component loads
   useEffect(() => {
     dispatch(listProducts())
   }, [dispatch])

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../styles/PlaceOrderScreen.css'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message'
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = ({ history }) => {
   // Calls/Invokes an action
@@ -35,10 +36,30 @@ const PlaceOrderScreen = ({ history }) => {
     Number(cart.taxPrice)
   ).toFixed(2)
 
+  // Brings in data from global state (Redux store)
+  const orderCreate = useSelector(state => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  // Cause a side-effect when the component loads
+  useEffect(() => {
+    if (success) {
+      history.push(`/orders/${order._id}`)
+    }
+  }, [history, success, order])
+
   // PlaceOrder function
   const placeOrderHandler = () => {
-    console.log('PlaceOrder Handler')
-    history.push('/order/:id')
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
   }
 
   return (

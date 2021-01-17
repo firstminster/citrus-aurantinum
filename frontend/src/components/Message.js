@@ -3,8 +3,10 @@ import '../styles/Message.css'
 
 const Message = ({ msg, messageType, children }) => {
   return (
-    <main className={`message message-${messageType}`}>
-      {msg} {children}
+    <main>
+      <div className={`message message-${messageType}`}>
+        {msg} {children}
+      </div>
     </main>
   )
 }
