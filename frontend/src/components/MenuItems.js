@@ -1,17 +1,17 @@
 export const AdminMenuItems = [
   {
-    title: 'User',
-    path: '/user',
+    title: 'Users',
+    path: '/admin/userlist',
     cName: 'dropdown-link',
   },
   {
     title: 'Products',
-    path: '/products',
+    path: '/admin/productlist',
     cName: 'dropdown-link',
   },
   {
     title: 'Orders',
-    path: '/orders',
+    path: '/admin/orderlist',
     cName: 'dropdown-link',
   },
 ]
