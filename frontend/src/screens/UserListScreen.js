@@ -74,7 +74,7 @@ const UserListScreen = ({ history }) => {
                     )}
                   </td>
                   <td className='userlistScreen__btnFlex'>
-                    <Link to={`/admin/user/${user._id}/edit`}>
+                    <Link to={`/admin/users/:id/edit`}>
                       <i className='fas fa-edit fa-2x userlistScreen__editBtn'></i>
                     </Link>
                     <button

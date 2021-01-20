@@ -7,6 +7,7 @@ import {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
 } from '../controllers/userController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 import { body, validationResult } from 'express-validator'
@@ -42,6 +43,9 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
 
-router.route('/:id').delete(protect, admin, deleteUser)
+router
+  .route('/:id')
+  .delete(protect, admin, deleteUser)
+  .get(protect, admin, getUserById)
 
 export default router
