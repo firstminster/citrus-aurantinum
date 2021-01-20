@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Link, LInk, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import '../styles/UserEditScreen.css'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
+import { getUserDetails, updateUser } from '../actions/userActions'
+import Spinner from '../components/Spinner'
+import { Message } from '@material-ui/icons'
 
-const UserEditScreen = () => {
+const UserEditScreen = ({ history }) => {
   // Extract the ID from the URL
   const id = useParams()
-  const userId = Number(id)
+  const userId = id.id
 
   // Initialize the state
   const [name, setName] = useState('')
@@ -20,12 +24,39 @@ const UserEditScreen = () => {
   const userDetails = useSelector(state => state.userDetails)
   const { loading, error, user } = userDetails
 
-  useEffect(() => {}, [])
+  // Brings in Date from global state (Redux Store)
+  const userUpdate = useSelector(state => state.userUpdate)
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdate
+
+  useEffect(() => {
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET })
+      history.push('/admin/userlist')
+    }
+    if (!user.name || user._id !== userId) {
+      dispatch(getUserDetails(userId))
+    } else {
+      setName(user.name)
+      setEmail(user.email)
+      setIsAdmin(user.isAdmin)
+    }
+  }, [user, userId, dispatch, successUpdate, history])
 
   // Submit Handler
   const submitHandler = e => {
     e.preventDefault()
-    console.log('UserEdited')
+    dispatch(
+      updateUser({
+        _id: userId,
+        name,
+        email,
+        isAdmin,
+      })
+    )
   }
 
   return (
@@ -35,34 +66,42 @@ const UserEditScreen = () => {
       </Link>
       <div className='userEditScreen__layout'>
         <p className='title'>Edit User</p>
-        <form onSubmit={submitHandler}>
-          <label htmlFor='name'>Name</label>
-          <input
-            type='text'
-            id='name'
-            placeholder='Enter name'
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <label htmlFor='email'>Email</label>
-          <input
-            type='email'
-            id='email'
-            placeholder='Enter email'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <div className='userEditScreen__checkbox'>
+        {loadingUpdate && <Spinner />}
+        {errorUpdate && <Message msg={errorUpdate} messageType='danger' />}
+        {loading ? (
+          <Spinner />
+        ) : error ? (
+          <Message msg={error} messageType='danger' />
+        ) : (
+          <form onSubmit={submitHandler}>
+            <label htmlFor='name'>Name</label>
             <input
-              type='checkbox'
-              id='isAdmin'
-              checked={isAdmin}
-              onChange={e => setIsAdmin(e.target.checked)}
+              type='text'
+              id='name'
+              placeholder='Enter name'
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
-            <label htmlFor='isAdmin'>Is Admin</label>
-          </div>
-          <button type='submit'>Update</button>
-        </form>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              id='email'
+              placeholder='Enter email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <div className='userEditScreen__checkbox'>
+              <input
+                type='checkbox'
+                id='isAdmin'
+                checked={isAdmin}
+                onChange={e => setIsAdmin(e.target.checked)}
+              />
+              <label htmlFor='isAdmin'>Is Admin</label>
+            </div>
+            <button type='submit'>Update</button>
+          </form>
+        )}
       </div>
     </main>
   )

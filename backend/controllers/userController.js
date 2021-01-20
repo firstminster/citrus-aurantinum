@@ -229,4 +229,5 @@ export {
   getUsers,
   deleteUser,
   getUserById,
+  updateUser,
 }

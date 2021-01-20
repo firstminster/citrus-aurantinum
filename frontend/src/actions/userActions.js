@@ -18,9 +18,12 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  USER_UPDATE_FAIL,
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
 } from '../constants/userConstants'
 
 // Login to authenticate User
@@ -257,6 +260,47 @@ export const deleteUser = id => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+// Update Users in Admin dashboard
+export const updateUser = user => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    })
+
+    // Destructure from global state
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    // Set Headers Type
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+    })
+
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
